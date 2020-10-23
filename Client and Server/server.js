@@ -13,8 +13,44 @@ console.log('request made');
 // put html file as well as simple text in response
 res.setHeader('content-type', 'text/html');
 
+//basic routing stuff
+//setting path for html page
+//depending upon the url requested
+
+
+path = './html_pages/';
+console.log(req.url);
+switch(req.url){
+    case '/':
+        path+='html_page1.html';
+        res.statusCode=200;
+        break;
+
+    case '/html_page2':
+        path+='html_page2.html';
+        res.statusCode=200;
+        break;
+
+        //it for redirecting
+        //this "html_page_2" url is directed to
+        //html_pages2
+    case '/html_page_2':
+
+        //redirect status code
+        res.statusCode = 301;
+
+        //redirecting this case to html_page2
+        res.setHeader('Location', '/html_page2');
+        res.end();
+        
+    default:
+        path+='html_error_page.html';
+        res.statusCode=404;
+        break;
+}
+
 //getting html file
-fs.readFile('./html_pages/html_page1.html',(err,data)=>{
+fs.readFile(path,(err,data)=>{
     if(err){
         console.log(err);
     }
