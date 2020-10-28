@@ -1,0 +1,28 @@
+<html>
+<head>
+</head>
+
+<body>
+<!--including content of anther file which might be common
+in most file so we update in one file only-->
+<%- include('./Partials/content.ejs')%>
+
+<!--by ejs using javascript as such-->
+<%= title %>
+
+    <p><h1>DEFAULT PAGE</h1></p>
+    <p><a href="/sdfsd">Error page</a></p>
+    <p><a href="/html_page2">Second page</a></p>
+
+<!--displaying the content from backend which maybe database dynamic-->
+    <% if (data_transfer.length > 0) {data_transfer.forEach(data_transfer =>{%>
+        <h1><%= data_transfer.title  %></h1>
+        <p><%= data_transfer.display  %></p>      
+     <% })} %>
+
+<!--including content of anther file which might be common
+in most file so we update in one file only-->
+     <%- include('./Partials/footer.ejs')%>
+</body>
+
+</html>
